@@ -8,6 +8,7 @@ import PromoFilm from '../../components/promo-film/promo-film';
 import { filmsSelector, movieSelector } from '../../store/data/selectors';
 import { setFilmInfoError } from '../../store/data/data';
 import LoadingScreen from '../loading-screen/loading-screen';
+import { fetchFavoriteFilmsAction, fetchFilmsAction, fetchPromoFilmAction } from '../../store/api-actions';
 
 function MainScreen(): JSX.Element {
 
@@ -19,6 +20,9 @@ function MainScreen(): JSX.Element {
     if (movieInfo.isError) {
       dispatch(setFilmInfoError({isError: false}));
     }
+    dispatch(fetchFilmsAction());
+    dispatch(fetchPromoFilmAction());
+    dispatch(fetchFavoriteFilmsAction());
   }, [dispatch, movieInfo.isError]);
 
   if (filmsList.isLoading) {

@@ -3,11 +3,18 @@ import Avatar from '../../components/avatar/avatar';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import MovieCard from '../../components/movie-card/movie-card';
-import { useState } from 'react';
-import { useAppSelector } from '../../hooks';
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { favoriteFilmsSelector } from '../../store/data/selectors';
+import { fetchFavoriteFilmsAction } from '../../store/api-actions';
 
 function MoviesList(): JSX.Element {
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFavoriteFilmsAction());
+  }, [dispatch]);
 
   const favoriteFilms = useAppSelector(favoriteFilmsSelector);
   const [activeCardId, setActiveCardId] = useState<number | null>(null);

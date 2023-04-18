@@ -1,7 +1,7 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AuthorizationStatus, AppRoute } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { sendFavoriteStatusAction } from '../../store/api-actions';
+import { fetchFavoriteFilmsAction, sendFavoriteStatusAction } from '../../store/api-actions';
 import { Film } from '../../types/film';
 import { PropsWithChildren, useEffect } from 'react';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
@@ -24,6 +24,7 @@ function MovieInfo (props: MovieInfoProps): JSX.Element {
     if (authorizationStatus !== AuthorizationStatus.Auth) {
       dispatch(loadFavoriteFilms({favoriteFilms: []}));
     }
+    dispatch(fetchFavoriteFilmsAction());
   }, [authorizationStatus, dispatch]);
 
   const buttonClickHandler = () => {

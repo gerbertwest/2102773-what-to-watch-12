@@ -60,7 +60,7 @@ function MoviePlayer(): JSX.Element {
 
     videoRef.current.ontimeupdate = () => setRemainingTime(durationTime - currentTime);
 
-  }, [currentTime, dispatch, durationTime, isLoaded, isPlaying, params.id, film]);
+  }, [currentTime, dispatch, durationTime, film.data, film.isError, isLoaded, isPlaying, params.id]);
 
   if (film.isError) {
     return <PageNotFound/>;

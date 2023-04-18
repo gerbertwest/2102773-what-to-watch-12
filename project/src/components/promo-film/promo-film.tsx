@@ -20,8 +20,7 @@ function PromoFilm(props: PropsWithChildren): JSX.Element {
     if (authorizationStatus !== AuthorizationStatus.Auth) {
       dispatch(loadFavoriteFilms({favoriteFilms: []}));
     }
-
-  }, [authorizationStatus, dispatch, navigate]);
+  }, [authorizationStatus, dispatch]);
 
   if (!promoFilm.data) {
     return <DefaultLoader/>;
